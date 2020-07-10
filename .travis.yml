@@ -2,6 +2,9 @@ sudo: required
 language: node_js
 node_js:
  - "node"
+env:
+ - AWS_ACCESS_KEY_ID=$AWS-KEY
+ - AWS_SECRET_ACCESS_KEY=$AWS-PSW 
 services:
  - docker
 before_install:
@@ -12,7 +15,4 @@ script:
  - docker build -f Dockerfile.prod -t ancla .
  - docker tag ancla:latest 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
  - docker push 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
-
-travis encrypt AWS_ACCESS_KEY_ID=$AWS-KEY --add env.global
-travis encrypt AWS_SECRET_ACCESS_KEY=$AWS-PSW --add env.global
  
