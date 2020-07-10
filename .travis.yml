@@ -13,6 +13,6 @@ script:
  - docker tag ancla:latest 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
  - docker push 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
 
-#  travis encrypt AWS_ACCESS_KEY_ID=AWS-KEY --add
-#  travis encrypt AWS_SECRET_ACCESS_KEY=AWS-PSW --add
+travis encrypt AWS_ACCESS_KEY_ID=$AWS-KEY --add env.global
+travis encrypt AWS_SECRET_ACCESS_KEY=$AWS-PSW --add env.global
  
