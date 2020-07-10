@@ -1,18 +1,18 @@
-sudo: required 
+sudo: required
 language: node_js
 node_js:
- - "node"
+- node
 services:
- - docker
+- docker
 before_install:
- - pip install --user awscli
- - export PATH=$PATH:$HOME/.local/bin
+- pip install --user awscli
+- export PATH=$PATH:$HOME/.local/bin
 script:
- - eval $(aws ecr get-login --region us-east-1)
- - docker build -f Dockerfile.prod -t ancla .
- - docker tag ancla:latest 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
- - docker push 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
-
- travis encrypt AWS_ACCESS_KEY_ID=$AWS-KEY --add
- travis encrypt AWS_SECRET_ACCESS_KEY=$AWS-PSW --add
- 
+- eval $(aws ecr get-login --region us-east-1)
+- docker build -f Dockerfile.prod -t ancla .
+- docker tag ancla:latest 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
+- docker push 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
+env:
+  global:
+  - secure: EkjWZpyYyVrDxJFPK6s8VM25YaNiuJgB4dp2FVPSHSeQm4fDbeQTY1mtYoVh0aCl5rRKUMgbhqea9epePEQOL2sOf7XokviBaKOduqyFXtpSWu+14/PWDBVWQUBoWPRrqc14xm+SjD0+G+17+Ab3tPaVoxqqbGbjJL9g0Ts0lr/5VGGfo8ruy9bqp8pU7xkuWR3UUXIhaZhC6h6pLSbOZV2XRSIuJn7Jvj5d86r3zweFMw4lyNfheMmkOuiHO0N9+DPnZWL2svIeI1d5J30ULOC8a/9DVCeuGnOyGnbn1ZcDfr5DQAABBubAPRuiSIBOudHf0PwNfzLdtZ8fRUYQ58YfmjCxEc8bGR8KJqUqc26pq52XPOG1zG8UJ5SamdsmuNGWn3pElSzPy4FusB4usWNemWRJWjccQmxfkEl87vNZweT7N6IpM30jIQSggRjAM20I5w/rkjA2HmGaP3Lkr43Ek5ynA7YQp0lheXvGsm6frZlm70jH3e99a7JLhDCFhKaWEfFAt41ZsQq65/HtGKDsHSzt6aqb3FNRTBoG3Jt/RGYMDt3YuGNpV41KqOTekHgxc1gZMiBbG+rDWiDl/vlXtEso5weJlzw8ynuTqYj7Oc2/fR0kotakbfC71HsR7E952oXZ5lW1ZGJZ9GCZvG5Tfw2UqiTdc2ho1d8nvZ0=
+  - secure: EoZ9fKvNfZ5jloR2ua8pc0kqWfqrebwE3bggS5TmHfgndPfLbwgmWGXvfVlEjlMH3fdFDTM2a3ddv+hGOfrbtKTY3yWMOOisOPmeDh/RRIVaSLvfqa/Sh2rtOzXYSdFd1uFWIZDHvnaxtNLSOifL9wtH8MWoq96zv5Izh+6MexeyJHbjqImbCaDgZJ0UH+1k9jf1qWZ1mIea0/xe82b6PxtHv2NhGI3tvPzqgsyibB+HAcoK3qHzGPVmJQtXvmPonpf263lziAeJ19ogTIER6uEv+GkVm6hlNlLMx0EMukwSv6LHLhq1/jZWQo3Vc5VCxvIkSouhAJ6n7sXrXZkN22yF7mJIzqd+MyKmDHQR7bRM6nVOSBoOUu1wSUlSLcjIJmwVvrZfrSDOAKbaRBwKkcjQhJij1mm8NoccSL8TWvjrqoUWIceBpVGFaoN2TYUEmBjg77sHSv4Aq+WRbI7kE7sthVuWHoIyWFGCMDKqDnNejOq7p8NrMr8NoAoobG8hX1+MOo0JHt3hZm/MLOZ3ktKEWj3Kk7JN36NpxbUDva08zWAMDItEkKL9uCHsN/7z/R392pvA6iEDPWhFOhy7ZN2Z8uYASg4Y0/3zTRL4qMS/3NG9yKqY6zNdWUs8lREtdKjTJe0e8vauvOo62nROPl/xVWH9R5JkkHsXCeEq1JY=
