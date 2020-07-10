@@ -1,0 +1,18 @@
+sudo: required 
+language: node_js
+node_js:
+ - "node"
+services:
+ - docker
+before_install:
+ - pip install --user awscli
+ - export PATH=$PATH:$HOME/.local/bin
+script:
+ - eval $(aws ecr get-login --region us-east-1)
+ - docker build -f Dockerfile.prod -t ancla .
+ - docker tag ancla:latest 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
+ - docker push 975023177007.dkr.ecr.us-east-1.amazonaws.com/ancla:latest
+
+ travis encrypt AWS_ACCESS_KEY_ID=$AWS-KEY --add
+ travis encrypt AWS_SECRET_ACCESS_KEY=$AWS-PSW --add
+ 
